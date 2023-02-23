@@ -52,3 +52,30 @@ User-Agent          : curl/7.87.0
 {"key":"value","banana":"banana"}
 
 ```
+
+# Helper endpoints
+## `/authenticated`
+With any http verb chech if "Authorization" header is present. If not lead to a 401.
+
+## `/status/:code`
+Send a status code to give it back. Example:
+```shell
+curl  -vvv localhost:8080/status/418
+```
+```
+*   Trying 127.0.0.1:8080...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /status/418 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.87.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 418 I'm a teapot
+< Content-Type: application/json; charset=utf-8
+< Date: Thu, 23 Feb 2023 11:18:11 GMT
+< Content-Length: 2
+< 
+* Connection #0 to host localhost left intact
+""%
+```
